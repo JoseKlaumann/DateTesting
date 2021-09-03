@@ -1,5 +1,6 @@
 //URI 1047 - 02/09/2021
-//Testando usar o Date 
+//No exercicio ele nao fala de datas (dd/MM/yyy), porem e necessario coloca-las se quiser trabalhar com o date
+//Testando usar o Date
 
 package date;
 
@@ -16,28 +17,27 @@ public class Program {
 
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Date firstDate = sdf.parse(sc.nextLine());
+		Date secondDate = sdf.parse(sc.nextLine());
+
+		long diffrenceH = 0, diffrenceM = 0;
+
+		long diff = secondDate.getTime() - firstDate.getTime();
+
+		TimeUnit timeHo = TimeUnit.HOURS;
+		diffrenceH = timeHo.convert(diff, TimeUnit.MILLISECONDS);
+		System.out.println("The difference in hours is : " + diffrenceH);
+		diffrenceH %= 24;
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		Date firstTime = sdf.parse(sc.nextLine());
-		Date secondTime = sdf.parse(sc.nextLine());
-		
-		long allTime = secondTime.getTime() - firstTime.getTime();
-		
-		TimeUnit timeHours = TimeUnit.HOURS;
-		long diffHours = timeHours.convert(allTime, TimeUnit.MILLISECONDS);
-		System.out.println("The difference in hours is: " + diffHours);
-		
-		TimeUnit timeMinutes = TimeUnit.MINUTES;
-		long diffMinutes = timeMinutes.convert(allTime, TimeUnit.MILLISECONDS);
-		System.out.println("The difference in minutes is: " + diffMinutes);
-		diffMinutes %= 60;
-		
-		if(diffHours == diffMinutes) {
-			System.out.println("THE GAME LAST 24 HOUR(S) AND 0 MINUTE(S)");
-		} else {
-			System.out.printf("THE GAME LAST %s HOUR(S) AND %s MINUTE(S)", diffHours, diffMinutes);
-		}
-		
+		TimeUnit timeMi = TimeUnit.MINUTES;
+		diffrenceM = timeMi.convert(diff, TimeUnit.MILLISECONDS);
+
+		System.out.println("The difference in min is : " + diffrenceM);
+		diffrenceM %= 60;
+
+		System.out.printf("O JOGO DUROU %s HORA(S) E %s MINUTO(S)", diffrenceH, diffrenceM);
 		sc.close();
 	}
 }
