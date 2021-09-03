@@ -29,7 +29,6 @@ public class Program {
 		TimeUnit timeHo = TimeUnit.HOURS; //Define que a conversao deve ser feita para horas
 		long diffrenceH = timeHo.convert(diff, TimeUnit.MILLISECONDS); //Transforma os milisegundos em horas
 		System.out.println("The difference in hours is : " + diffrenceH); 
-		diffrenceH %= 24; //Caso de um valor maior ele utiliza este calculo e pega o resto da divisao como resposta
 		
 		TimeUnit timeMi = TimeUnit.MINUTES;//Define que a conversao deve ser feita para minutos
 		long diffrenceM = timeMi.convert(diff, TimeUnit.MILLISECONDS);//Transforma os milisegundos em minutos
