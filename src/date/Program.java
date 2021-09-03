@@ -16,27 +16,28 @@ public class Program {
 
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		Date firstDate = sdf.parse(sc.nextLine());
-		Date secondDate = sdf.parse(sc.nextLine());
-
-		long diff = secondDate.getTime() - firstDate.getTime();
-
-		TimeUnit timeH = TimeUnit.HOURS;
-		long diffrenceH = timeH.convert(diff, TimeUnit.MILLISECONDS);
-		System.out.println("The difference in hours is : " + diffrenceH);
-
-		TimeUnit timeM = TimeUnit.MINUTES;
-		long diffrenceM = timeM.convert(diff, TimeUnit.MILLISECONDS);
-		System.out.println("The difference in min is : " + diffrenceM);
-		diffrenceM %= 60;
-
-		if (diffrenceH == diffrenceM) {
-			System.out.println("O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)");
+		Date firstTime = sdf.parse(sc.nextLine());
+		Date secondTime = sdf.parse(sc.nextLine());
+		
+		long allTime = secondTime.getTime() - firstTime.getTime();
+		
+		TimeUnit timeHours = TimeUnit.HOURS;
+		long diffHours = timeHours.convert(allTime, TimeUnit.MILLISECONDS);
+		System.out.println("The difference in hours is: " + diffHours);
+		
+		TimeUnit timeMinutes = TimeUnit.MINUTES;
+		long diffMinutes = timeMinutes.convert(allTime, TimeUnit.MILLISECONDS);
+		System.out.println("The difference in minutes is: " + diffMinutes);
+		diffMinutes %= 60;
+		
+		if(diffHours == diffMinutes) {
+			System.out.println("THE GAME LAST 24 HOUR(S) AND 0 MINUTE(S)");
 		} else {
-			System.out.printf("O JOGO DUROU %s HORA(S) E %s MINUTO(S)", diffrenceH, diffrenceM);
+			System.out.printf("THE GAME LAST %s HOUR(S) AND %s MINUTE(S)", diffHours, diffMinutes);
 		}
+		
 		sc.close();
 	}
 }
